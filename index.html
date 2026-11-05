@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>(주)MFT 우리아빠트럭 | 1톤·5톤 화물기사 & 차주 모집</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Pretendard:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-navy: #11284b;
+      --point-orange: #f26522;
+      --bg-gray: #f8fafc;
+      --border-color: #e2e8f0;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: var(--text-dark);
+      line-height: 1.5;
+      padding-bottom: 80px; /* 모바일 하단바 여백 */
+    }
+
+    /* 상단 헤더 바 */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: #ffffff;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .top-header .brand-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-navy);
+      letter-spacing: -0.3px;
+    }
+
+    .top-header .direct-call {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--point-orange);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* 1. 핵심 애니메이션 스테이지 */
+    .hero-stage {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: 16px;
+      margin: 16px 0 20px 0;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 크레파스 손글씨 타이틀 */
+    .crayon-title {
+      font-family: 'Gaegu', cursive, sans-serif;
+      font-size: 46px;
+      font-weight: 700;
+      color: var(--primary-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      text-shadow: 1px 1px 0px rgba(17, 40, 75, 0.2), 
+                   -1px -1px 0px rgba(242, 101, 34, 0.15);
+      user-select: none;
+      margin-bottom: 25px;
+    }
+
+    .crayon-char {
+      display: inline-block;
+      opacity: 0;
+      transform: scale(0.7) rotate(-3deg);
+      filter: drop-shadow(1px 2px 1px rgba(0,0,0,0.1));
+      animation: crayonWrite 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+    }
+
+    .crayon-char:nth-child(1) { animation-delay: 0.1s; }
+    .crayon-char:nth-child(2) { animation-delay: 0.3s; }
+    .crayon-char:nth-child(3) { animation-delay: 0.5s; color: var(--point-orange); }
+    .crayon-char:nth-child(4) { animation-delay: 0.7s; color: var(--point-orange); }
+    .crayon-char:nth-child(5) { animation-delay: 0.9s; }
+    .crayon-char:nth-child(6) { animation-delay: 1.1s; }
+
+    @keyframes crayonWrite {
+      0% {
+        opacity: 0;
+        transform: scale(0.6) rotate(-8deg);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.15) rotate(4deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    /* 도로 라인 */
+    .road-line {
+      position: absolute;
+      bottom: 22px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #cbd5e1;
+      border-radius: 2px;
+    }
+
+    /* 오른쪽에서 왼쪽으로 글씨 정중앙으로 오는 5톤 윙바디 트럭 */
+    .truck-wrapper {
+      position: absolute;
+      bottom: 18px;
+      /* 화면 우측 밖(120%)에서 시작해서 중앙(calc(50% - 110px))에 정차 */
+      right: -240px;
+      width: 220px;
+      height: 75px;
+      z-index: 3;
+      animation: truckDriveToCenter 2.2s cubic-bezier(0.12, 0.82, 0.22, 1) forwards;
+      animation-delay: 1.3s; /* 글씨가 다 써진 직후 출발 */
+    }
+
+    @keyframes truckDriveToCenter {
+      0% {
+        right: -240px;
+        transform: translateY(0);
+      }
+      75% {
+        right: calc(50% - 105px);
+        transform: translateY(-2px) rotate(-0.5deg);
+      }
+      88% {
+        right: calc(50% - 112px); /* 급제동 관성 반동 */
+        transform: translateY(2px) rotate(0.8deg);
+      }
+      100% {
+        right: calc(50% - 110px); /* 글씨 정중앙 정차 */
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+    /* 바퀴 회전 모션 */
+    .truck-wrapper svg .wheel {
+      transform-origin: center;
+      animation: wheelRoll 2s linear infinite;
+    }
+
+    @keyframes wheelRoll {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    /* 트럭 정차 후 등장하는 슬로건 배지 */
+    .hero-badge {
+      position: absolute;
+      bottom: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-navy);
+      background: #ffffff;
+      padding: 3px 12px;
+      border-radius: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      border: 1px solid var(--border-color);
+      opacity: 0;
+      transform: translateY(8px);
+      animation: badgeFadeUp 0.6s ease forwards;
+      animation-delay: 3.3s;
+      z-index: 4;
+    }
+
+    @keyframes badgeFadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 2. 핵심 요약 카드 그리드 (주5/주6, 차숙, 윙바디, 차주환영) */
+    .features-card {
+      background: var(--bg-gray);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
+    }
+
+    .features-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary-navy);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .feature-item {
+      background: #ffffff;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #eef2f6;
+    }
+
+    .feature-item .tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--point-orange);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .feature-item .val {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.35;
+    }
+
+    /* 3. 간편 상담 접수 폼 (숏폼) */
+    .form-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px 18px;
+      border: 2px solid var(--primary-navy);
+      box-shadow: 0 4px 14px rgba(17, 40, 75, 0.06);
+      margin-bottom: 20px;
+    }
+
+    .form-card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary-navy);
+      margin-bottom: 4px;
+    }
+
+    .form-card-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      height: 44px;
+      padding: 0 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-navy);
+    }
+
+    /* 칩 선택 버튼 (라디오 버튼 대체) */
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip-item {
+      flex: 1;
+      min-width: 75px;
+    }
+
+    .chip-item input[type="radio"] {
+      display: none;
+    }
+
+    .chip-item label {
+      display: block;
+      text-align: center;
+      padding: 9px 4px;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      margin-bottom: 0;
+      transition: all 0.2s;
+    }
+
+    .chip-item input[type="radio"]:checked + label {
+      background: var(--primary-navy);
+      color: #ffffff;
+      border-color: var(--primary-navy);
+      font-weight: 700;
+    }
+
+    .submit-btn {
+      width: 100%;
+      height: 50px;
+      background: var(--point-orange);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 4px 10px rgba(242, 101, 34, 0.3);
+      transition: background 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: #dd5617;
+    }
+
+    /* 푸터 법적 필수 표기 */
+    .simple-footer {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.6;
+      text-align: center;
+      padding: 10px 0 20px 0;
+    }
+
+    /* 모바일 하단 고정 전화 상담 바 */
+    .mobile-call-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 62px;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      z-index: 100;
+    }
+
+    .call-btn-fixed {
+      width: 100%;
+      max-width: 580px;
+      height: 46px;
+      background: var(--primary-navy);
+      color: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 초간단 헤더 -->
+  <header class="top-header">
+    <div class="brand-title">(주)MFT | 우리아빠트럭</div>
+    <a href="tel:01000000000" class="direct-call">📞 전화 바로상담</a>
+  </header>
+
+  <div class="container">
+
+    <!-- 1. 메인 애니메이션 섹션 -->
+    <div class="hero-stage">
+      <!-- 크레파스 한 글자씩 써지는 텍스트 -->
+      <div class="crayon-title">
+        <span class="crayon-char">우</span>
+        <span class="crayon-char">리</span>
+        <span class="crayon-char">아</span>
+        <span class="crayon-char">빠</span>
+        <span class="crayon-char">트</span>
+        <span class="crayon-char">럭</span>
+      </div>
+
+      <!-- 오른쪽에서 왼쪽으로 달려와 글씨 가운데 정차하는 5톤 윙바디 트럭 -->
+      <div class="truck-wrapper">
+        <svg viewBox="0 0 240 85" width="220" height="75">
+          <!-- 5톤 윙바디 적재함 (White Body & Navy Stripe) -->
+          <rect x="5" y="10" width="155" height="52" rx="3" fill="#ffffff" stroke="#11284b" stroke-width="2.5"/>
+          <rect x="5" y="32" width="155" height="10" fill="#f26522"/>
+          <text x="78" y="24" font-size="8" font-weight="900" fill="#11284b" text-anchor="middle">5톤 WINGBODY (9.7m·10.2m)</text>
+          <!-- 윙바디 개폐 힌지 라인 -->
+          <line x1="5" y1="16" x2="160" y2="16" stroke="#cbd5e1" stroke-width="1.5"/>
+          <line x1="5" y1="56" x2="160" y2="56" stroke="#cbd5e1" stroke-width="1.5"/>
+          <!-- 하부 프레임 & 연료통 -->
+          <rect x="15" y="62" width="140" height="5" fill="#334155"/>
+          <rect x="55" y="58" width="25" height="8" rx="2" fill="#64748b"/>
+          
+          <!-- 운전석 캡 (앞머리: 왼쪽을 향함) -->
+          <path d="M 160 22 L 185 22 L 205 38 L 210 50 L 210 65 L 160 65 Z" fill="#11284b" stroke="#11284b" stroke-width="2"/>
+          <!-- 전면 윈드실드/창문 -->
+          <path d="M 172 26 L 186 26 L 201 38 L 172 38 Z" fill="#bae6fd"/>
+          <!-- 전조등 & 범퍼 -->
+          <rect x="207" y="53" width="4" height="6" fill="#facc15" rx="1"/>
+          <rect x="195" y="60" width="18" height="6" rx="2" fill="#475569"/>
+
+          <!-- 바퀴 (3축 구성 & 회전 애니메이션 적용) -->
+          <g class="wheel"><circle cx="40" cy="67" r="9" fill="#1e293b"/><circle cx="40" cy="67" r="4" fill="#94a3b8"/></g>
+          <g class="wheel"><circle cx="70" cy="67" r="9" fill="#1e293b"/><circle cx="70" cy="67" r="4" fill="#94a3b8"/></g>
+          <g class="wheel"><circle cx="185" cy="67" r="9" fill="#1e293b"/><circle cx="185" cy="67" r="4" fill="#94a3b8"/></g>
+        </svg>
+      </div>
+
+      <div class="road-line"></div>
+      <div class="hero-badge">믿을 수 있는 화물 파트너 | (주)MFT</div>
+    </div>
+
+    <!-- 2. 기사님 핵심 조건 요약 (4개 칩) -->
+    <div class="features-card">
+      <div class="features-title">🚛 우리아빠트럭 맞춤 노선 & 모집 조건</div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="tag">근무 선택</span>
+          <div class="val">주 5일 / 주 6일<br>자유로운 선택</div>
+        </div>
+        <div class="feature-item">
+          <span class="tag">노선 맞춤</span>
+          <div class="val">차숙 없는 단거리 /<br>고수익 차숙 노선</div>
+        </div>
+        <div class="feature-item">
+          <span class="tag">차량 스펙</span>
+          <div class="val">1톤 & 5톤 윙바디<br>(9.7m / 10.2m)</div>
+        </div>
+        <div class="feature-item">
+          <span class="tag">지원 형태</span>
+          <div class="val">기존 차주분 환영<br>직영 · 임대 · 분양</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 실시간 간편 상담 접수 폼 -->
+    <div class="form-card">
+      <div class="form-card-title">1분 맞춤 노선 상담 신청</div>
+      <div class="form-card-sub">연락처를 남겨주시면 거주지와 희망 조건에 맞춰 바로 연락드립니다.</div>
+
+      <form action="#" method="POST" onsubmit="event.preventDefault(); alert('상담 신청이 정상 접수되었습니다. (주)MFT 담당자가 빠르게 연락드리겠습니다.');">
+        
+        <div class="form-group">
+          <label>성함</label>
+          <input type="text" class="form-control" placeholder="성함을 입력해주세요" required>
+        </div>
+
+        <div class="form-group">
+          <label>연락처</label>
+          <input type="tel" class="form-control" placeholder="010-0000-0000" required>
+        </div>
+
+        <div class="form-group">
+          <label>희망 차종 / 보유 상태</label>
+          <div class="chip-group">
+            <div class="chip-item">
+              <input type="radio" id="truck-type-1" name="truck_type" value="1톤" checked>
+              <label for="truck-type-1">1톤</label>
+            </div>
+            <div class="chip-item">
+              <input type="radio" id="truck-type-2" name="truck_type" value="5톤">
+              <label for="truck-type-2">5톤 (9.7/10.2m)</label>
+            </div>
+            <div class="chip-item">
+              <input type="radio" id="truck-type-3" name="truck_type" value="차량없음">
+              <label for="truck-type-3">직영·분양·임대</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>희망 노선 형태</label>
+          <div class="chip-group">
+            <div class="chip-item">
+              <input type="radio" id="route-type-1" name="route_type" value="당일단거리" checked>
+              <label for="route-type-1">당일 단거리 (차숙X)</label>
+            </div>
+            <div class="chip-item">
+              <input type="radio" id="route-type-2" name="route_type" value="차숙장거리">
+              <label for="route-type-2">차숙 가능 노선</label>
+            </div>
+            <div class="chip-item">
+              <input type="radio" id="route-type-3" name="route_type" value="상담결정">
+              <label for="route-type-3">상담 후 결정</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">내 조건 맞춤 노선 상담받기</button>
+      </form>
+    </div>
+
+    <!-- 하단 사업자 정보 (네이버 심사용 필수) -->
+    <footer class="simple-footer">
+      (주)MFT | 우리아빠트럭<br>
+      경기도 화성시 동탄기흥로 393-20 1층 129호<br>
+      문의: 010-0000-0000 | 개인정보 보호책임자: 백수연 과장<br>
+      © 2026 (주)MFT All rights reserved.
+    </footer>
+
+  </div>
+
+  <!-- 모바일 하단 고정 원클릭 통화 버튼 -->
+  <div class="mobile-call-bar">
+    <a href="tel:01000000000" class="call-btn-fixed">
+      📞 전화 바로 상담하기
+    </a>
+  </div>
+
+</body>
+</html>
