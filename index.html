@@ -32,7 +32,6 @@
       color: var(--text);
     }
 
-    /* 상단 헤더 */
     header {
       position: absolute;
       top: 0;
@@ -75,7 +74,6 @@
       color: #64748b;
     }
 
-    /* 메인 원스크린 뷰 */
     main {
       width: 100%;
       height: 100vh;
@@ -86,7 +84,6 @@
       position: relative;
     }
 
-    /* 크레파스 손글씨 메인 타이틀 */
     .hero-title {
       font-family: 'Gaegu', cursive;
       font-size: 84px;
@@ -107,7 +104,6 @@
       color: var(--orange);
     }
 
-    /* 5톤 윙바디 트럭 진입 애니메이션 */
     .truck-stage {
       position: relative;
       width: 320px;
@@ -140,7 +136,6 @@
       filter: drop-shadow(0 10px 15px rgba(0,0,0,0.08));
     }
 
-    /* 우측 퀵 버튼 바 */
     .quick-bar {
       position: absolute;
       right: 40px;
@@ -204,7 +199,6 @@
       color: #ffedd5;
     }
 
-    /* 모달 베이스 */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -262,7 +256,6 @@
       color: #94a3b8;
     }
 
-    /* 모집조건 4분할 카드 그리드 */
     .condition-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -311,7 +304,6 @@
       line-height: 1.4;
     }
 
-    /* 상담 신청 폼 */
     .form-group {
       display: flex;
       flex-direction: column;
@@ -369,7 +361,6 @@
       cursor: not-allowed;
     }
 
-    /* 하단 푸터 표기 */
     footer {
       position: absolute;
       bottom: 20px;
@@ -397,19 +388,15 @@
 
     <div class="truck-stage">
       <div class="truck-container">
-        <!-- 5톤 윙바디 트럭 SVG 그래픽 -->
         <svg class="truck-svg" viewBox="0 0 250 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- 윙바디 화물칸 -->
           <rect x="10" y="20" width="150" height="58" rx="3" fill="#ffffff" stroke="#11284b" stroke-width="3"/>
           <line x1="10" y1="52" x2="160" y2="52" stroke="#f26522" stroke-width="6"/>
           <text x="85" y="44" font-size="7" font-weight="800" fill="#11284b" text-anchor="middle" letter-spacing="-0.3">5톤 WINGBODY (9.7m·10.2m)</text>
           
-          <!-- 헤드/캡 캐빈 -->
           <path d="M162 42 H188 L202 58 V78 H162 V42 Z" fill="#11284b"/>
           <path d="M172 46 H186 L196 58 H172 V46 Z" fill="#e0f2fe"/>
           <rect x="198" y="68" width="5" height="5" fill="#facc15" rx="1"/>
 
-          <!-- 프레임 및 바퀴 -->
           <rect x="25" y="78" width="165" height="4" fill="#334155"/>
           <circle cx="45" cy="82" r="9" fill="#1e293b"/>
           <circle cx="45" cy="82" r="4" fill="#94a3b8"/>
@@ -421,7 +408,6 @@
       </div>
     </div>
 
-    <!-- 우측 퀵 버튼 메뉴 -->
     <div class="quick-bar">
       <button class="quick-btn conditions" onclick="openConditionModal()">
         <span class="sub">노선&차량 선택</span>
@@ -436,10 +422,9 @@
 
   <footer>
     (주)MFT | 화물자동차 운송가맹·운송주선사업본부<br>
-    본사: 경기도 화성시 동탄기흥로 393-20 | 대표상담: 1:1 맞춤 배차센터
+    본사: 경기도 안양시 만안구 전파로24번길 35-13, 2층 201호 | 대표상담: 1:1 맞춤 배차센터
   </footer>
 
-  <!-- 1. 맞춤노선 모집조건 4분할 모달 -->
   <div class="modal-overlay" id="condModal">
     <div class="modal-card">
       <div class="modal-header">
@@ -471,7 +456,6 @@
     </div>
   </div>
 
-  <!-- 2. 빠른 상담 신청 폼 모달 -->
   <div class="modal-overlay" id="consultModal">
     <div class="modal-card">
       <div class="modal-header">
@@ -492,7 +476,7 @@
 
         <div class="form-group">
           <label>거주 지역 (출퇴근 기준지) *</label>
-          <input type="text" id="region" class="form-control" placeholder="예: 경기 화성 / 평택 / 수원 등" required>
+          <input type="text" id="region" class="form-control" placeholder="예: 경기 안양 / 화성 / 수원 등" required>
         </div>
 
         <div class="form-row">
@@ -536,7 +520,6 @@
   </div>
 
   <script>
-    // 구글 웹 앱 URL 배포 주소
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrPrIYZA4tKjWosoAPPKoSJ7_yWV8J7dv_K3VX4f2Ai7pwLOIkTo2QQOEQiucWKEKCnA/exec";
 
     function openConditionModal() {
@@ -552,7 +535,6 @@
       document.getElementById('consultModal').classList.remove('active');
     }
 
-    // 조건 카드 클릭 시 조건 자동 세팅 후 상담 모달로 전환
     function selectCondition(work, route) {
       document.getElementById('workType').value = work;
       document.getElementById('routeType').value = route;
@@ -560,14 +542,12 @@
       openConsultModal();
     }
 
-    // 모달 바깥 배경 클릭 시 닫기
     window.onclick = function(event) {
       if (event.target.classList.contains('modal-overlay')) {
         closeModals();
       }
     }
 
-    // 구글 스프레드시트 실시간 전송
     async function submitForm(e) {
       e.preventDefault();
       
@@ -591,3 +571,20 @@
           mode: 'no-cors',
           headers: {
             'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        alert("상담 신청이 정상 접수되었습니다!\n담당 매니저가 확인 후 곧 연락드리겠습니다.");
+        document.getElementById('consultForm').reset();
+        closeModals();
+      } catch (err) {
+        alert("접수 중 오류가 발생했습니다. 유선으로 직접 문의 부탁드립니다.");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "상담 신청서 제출하기";
+      }
+    }
+  </script>
+</body>
+</html>
