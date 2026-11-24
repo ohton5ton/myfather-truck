@@ -94,7 +94,7 @@
 
     .hero-title {
       font-family: 'Gaegu', cursive;
-      font-size: 84px;
+      font-size: 130px;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -114,15 +114,15 @@
 
     .truck-stage {
       position: relative;
-      width: 320px;
-      height: 140px;
+      width: 650px;
+      height: 260px;
       display: flex;
       justify-content: center;
       align-items: flex-end;
     }
 
     .truck-container {
-      width: 250px;
+      width: 650px;
       position: relative;
       animation: driveIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -377,6 +377,31 @@
       line-height: 1.6;
     }
 
+@media screen and (min-width: 769px) {
+  .hero-title {
+    font-size: clamp(60px, 8vw, 130px);
+    white-space: nowrap;
+  }
+
+  .truck-stage {
+    width: min(650px, 50vw);
+    height: auto;
+  }
+
+  .truck-container {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1100px) {
+  .quick-bar {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    margin-top: 24px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   html, body {
     width: 100%;
@@ -489,8 +514,21 @@
       <div class="truck-container">
         <svg class="truck-svg" viewBox="0 0 250 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="10" y="20" width="150" height="58" rx="3" fill="#ffffff" stroke="#11284b" stroke-width="3"/>
-          <line x1="10" y1="52" x2="160" y2="52" stroke="#f26522" stroke-width="6"/>
-          <text x="85" y="44" font-size="7" font-weight="800" fill="#11284b" text-anchor="middle" letter-spacing="-0.3">5톤 WINGBODY (9.7m·10.2m)</text>
+         
+<line x1="10" y1="52" x2="160" y2="52" stroke="#f26522" stroke-width="6"/>
+
+<rect x="14" y="24" width="49" height="50" fill="#ffffff"/>
+
+<image href="logo.png.png" x="14" y="24" width="49" height="50" preserveAspectRatio="xMidYMid meet"/>
+
+<text x="111" y="36" font-size="10" font-weight="800" fill="#11284b" text-anchor="middle">5톤 윙바디</text>
+
+<text x="111" y="46" font-size="8" font-weight="700" fill="#11284b" text-anchor="middle">(9.7m·10.2m)</text>
+
+<text x="111" y="63" font-size="6" font-weight="700" fill="#11284b" text-anchor="middle">문의전화</text>
+
+<text x="111" y="72" font-size="9" font-weight="800" fill="#11284b" text-anchor="middle">031-377-9947</text>
+
           
           <path d="M162 42 H188 L202 58 V78 H162 V42 Z" fill="#11284b"/>
           <path d="M172 46 H186 L196 58 H172 V46 Z" fill="#e0f2fe"/>
